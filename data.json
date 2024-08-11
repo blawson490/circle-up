@@ -1,0 +1,534 @@
+{
+  "decks": [
+    {
+      "id": 1,
+      "name": "Ice Breaker Questions",
+      "description": "Get to know each other with these fun and easy questions",
+      "color": "bg-sky-500",
+      "icon": "FaceSmileIcon",
+      "cards": [
+        {
+          "id": 1,
+          "text": "If you could travel anywhere in the world, where would you go and why?"
+        },
+        {
+          "id": 2,
+          "text": "What's your favorite hobby and how did you get into it?"
+        },
+        {
+          "id": 3,
+          "text": "What's one thing you're passionate about that might surprise people?"
+        },
+        {
+          "id": 4,
+          "text": "If you could have dinner with any historical figure, who would it be and why?"
+        },
+        {
+          "id": 5,
+          "text": "What's the best advice you've ever received, and from whom?"
+        },
+        {
+          "id": 6,
+          "text": "If you could switch lives with someone for a day, who would it be and why?"
+        },
+        {
+          "id": 7,
+          "text": "What's one thing you're looking forward to doing in the next year?"
+        },
+        {
+          "id": 8,
+          "text": "What's your go-to karaoke song, and why do you love it?"
+        },
+        {
+          "id": 9,
+          "text": "If you could go back in time and give advice to your younger self, what would it be?"
+        },
+        {
+          "id": 10,
+          "text": "What's the craziest thing you've ever done on a whim?"
+        },
+        {
+          "id": 11,
+          "text": "If you could have any superpower for one day, what would it be and how would you use it?"
+        },
+        {
+          "id": 12,
+          "text": "What's one thing you're proud of accomplishing, but nobody would ever guess about you?"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Team Building Questions",
+      "description": "Build trust and collaboration with these thought-provoking questions",
+      "color": "bg-green-500",
+      "icon": "HandRaisedIcon",
+      "cards": [
+        {
+          "id": 13,
+          "text": "What's one thing you appreciate most about your team members?"
+        },
+        {
+          "id": 14,
+          "text": "How do you like to receive feedback or recognition?"
+        },
+        {
+          "id": 15,
+          "text": "What's one challenge you're facing, and how can your team support you?"
+        },
+        {
+          "id": 16,
+          "text": "What's the most important thing you're working on right now, and how can your team help?"
+        },
+        {
+          "id": 17,
+          "text": "If you could create a new tradition or ritual for our team, what would it be and why?"
+        },
+        {
+          "id": 18,
+          "text": "What's one thing you wish you could tell your team, but haven't had the chance yet?"
+        },
+        {
+          "id": 19,
+          "text": "How do you handle conflict or disagreements with team members?"
+        },
+        {
+          "id": 20,
+          "text": "What's one thing you're grateful for about our team's culture?"
+        },
+        {
+          "id": 21,
+          "text": "If you could plan a team outing or activity, what would it be and why?"
+        },
+        {
+          "id": 22,
+          "text": "What's one thing you think our team does exceptionally well, and how can we build on that?"
+        },
+        {
+          "id": 23,
+          "text": "What's one thing you're looking forward to accomplishing with our team in the next quarter?"
+        },
+        {
+          "id": 24,
+          "text": "How do you prioritize your work when faced with multiple competing tasks?"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Conversation Starters",
+      "description": "Dive deeper into meaningful topics with these open-ended questions",
+      "color": "bg-indigo-500",
+      "icon": "ChatBubbleLeftEllipsisIcon",
+      "cards": [
+        {
+          "id": 25,
+          "text": "What's the most significant lesson you've learned from a past experience?"
+        },
+        {
+          "id": 26,
+          "text": "How do you think we can create a more inclusive and supportive community?"
+        },
+        {
+          "id": 27,
+          "text": "What's one thing you're proud of accomplishing, and how did you achieve it?"
+        },
+        {
+          "id": 28,
+          "text": "What's the biggest risk you've ever taken, and was it worth it?"
+        },
+        {
+          "id": 29,
+          "text": "If you could go back in time and witness any event in history, what would it be and why?"
+        },
+        {
+          "id": 30,
+          "text": "What's one thing you believe is essential for a fulfilling life, and why?"
+        },
+        {
+          "id": 31,
+          "text": "How do you handle uncertainty or ambiguity in your life?"
+        },
+        {
+          "id": 32,
+          "text": "What's one thing you're currently learning or trying to improve about yourself?"
+        },
+        {
+          "id": 33,
+          "text": "If you could have a 30-minute conversation with your future self, what would you ask?"
+        },
+        {
+          "id": 34,
+          "text": "What's the most meaningful gift you've ever received, and why was it so significant?"
+        },
+        {
+          "id": 35,
+          "text": "How do you think we can balance individuality with community and teamwork?"
+        },
+        {
+          "id": 36,
+          "text": "What's one thing you believe is a common misconception about the world, and why?"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Creative Spark",
+      "description": "Ignite your imagination with these creative prompts",
+      "color": "bg-orange-500",
+      "icon": "LightBulbIcon",
+      "cards": [
+        {
+          "id": 37,
+          "text": "If you could create a new holiday, what would it be and how would people celebrate?"
+        },
+        {
+          "id": 38,
+          "text": "What's the most creative solution you've ever come up with to solve a problem?"
+        },
+        {
+          "id": 39,
+          "text": "If you could turn any activity into an Olympic sport, what would it be and why?"
+        },
+        {
+          "id": 40,
+          "text": "What's the craziest idea you've ever had, and would you still try to make it happen?"
+        },
+        {
+          "id": 41,
+          "text": "If you could collaborate with any artist or musician, who would it be and what would you create?"
+        },
+        {
+          "id": 42,
+          "text": "What's the best brainstorming technique you've ever used, and how did it help?"
+        },
+        {
+          "id": 43,
+          "text": "If you could design a new city or community, what would be its core values and features?"
+        },
+        {
+          "id": 44,
+          "text": "What's the most inspiring book or movie you've ever consumed, and why did it resonate with you?"
+        },
+        {
+          "id": 45,
+          "text": "If you could create a new language, what would be its key features and how would it be used?"
+        },
+        {
+          "id": 46,
+          "text": "What's the biggest creative risk you've ever taken, and was it worth it?"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Personal Growth",
+      "description": "Reflect on your journey and cultivate self-awareness with these introspective questions",
+      "color": "bg-violet-500",
+      "icon": "AcademicCapIcon",
+      "cards": [
+        {
+          "id": 47,
+          "text": "What's the most significant lesson you've learned about yourself in the past year?"
+        },
+        {
+          "id": 48,
+          "text": "What's one habit you're trying to develop or break, and how's it going?"
+        },
+        {
+          "id": 49,
+          "text": "If you could go back in time and give advice to your 18-year-old self, what would it be?"
+        },
+        {
+          "id": 50,
+          "text": "What's the biggest self-care challenge you face, and how do you overcome it?"
+        },
+        {
+          "id": 51,
+          "text": "What's one thing you're proud of accomplishing, but nobody would ever guess about you?"
+        },
+        {
+          "id": 52,
+          "text": "If you could switch lives with someone for a day, who would it be and why?"
+        },
+        {
+          "id": 53,
+          "text": "What's the most important thing you're working on improving about yourself right now?"
+        },
+        {
+          "id": 54,
+          "text": "What's the biggest misconception people have about you, and how do you wish they could understand you better?"
+        },
+        {
+          "id": 55,
+          "text": "If you could create a personal mantra or affirmation, what would it be and why?"
+        },
+        {
+          "id": 56,
+          "text": "What's the most meaningful self-care practice you've adopted, and how has it impacted your life?"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Future Focus",
+      "description": "Envision and shape your future with these forward-thinking questions",
+      "color": "bg-teal-500",
+      "icon": "RocketLaunchIcon",
+      "cards": [
+        {
+          "id": 57,
+          "text": "What's the most exciting thing you're looking forward to accomplishing in the next 5 years?"
+        },
+        {
+          "id": 58,
+          "text": "If you could create a new industry or field, what would it be and how would it change the world?"
+        },
+        {
+          "id": 59,
+          "text": "What's the biggest challenge you think humanity will face in the next decade, and how can we prepare?"
+        },
+        {
+          "id": 60,
+          "text": "If you could leave a lasting legacy, what would it be and how would you achieve it?"
+        },
+        {
+          "id": 61,
+          "text": "What's the most promising emerging technology or trend, and how will it impact society?"
+        },
+        {
+          "id": 62,
+          "text": "If you could design a new education system, what would be its core principles and goals?"
+        },
+        {
+          "id": 63,
+          "text": "What's the most important thing you think we should be doing to create a better future for all?"
+        },
+        {
+          "id": 64,
+          "text": "If you could create a new form of sustainable energy, what would it be and how would it work?"
+        },
+        {
+          "id": 65,
+          "text": "What's the biggest opportunity for growth and innovation in your current field or industry?"
+        },
+        {
+          "id": 66,
+          "text": "If you could go back in time and give advice to your future self, what would it be?"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Social Impact",
+      "description": "Explore ways to make a positive difference with these socially conscious questions",
+      "color": "bg-amber-500",
+      "icon": "HomeIcon",
+      "cards": [
+        {
+          "id": 67,
+          "text": "What's the most pressing social issue you're passionate about, and how do you think we can address it?"
+        },
+        {
+          "id": 68,
+          "text": "If you could create a new non-profit organization, what would its mission be and how would it make a difference?"
+        },
+        {
+          "id": 69,
+          "text": "What's the most effective way you've found to make a positive impact in your community?"
+        },
+        {
+          "id": 70,
+          "text": "If you could collaborate with any social entrepreneur or changemaker, who would it be and what would you work on?"
+        },
+        {
+          "id": 71,
+          "text": "What's the biggest challenge you think we face in creating a more equitable society, and how can we overcome it?"
+        },
+        {
+          "id": 72,
+          "text": "If you could design a new community program or initiative, what would it be and how would it benefit the community?"
+        },
+        {
+          "id": 73,
+          "text": "What's the most inspiring example of social impact you've seen, and what can we learn from it?"
+        },
+        {
+          "id": 74,
+          "text": "If you could create a new policy or law to drive positive change, what would it be and how would it work?"
+        },
+        {
+          "id": 75,
+          "text": "What's the most important thing you think we can do to support marginalized or underrepresented groups?"
+        },
+        {
+          "id": 76,
+          "text": "If you could mobilize a movement around a specific cause, what would it be and how would you do it?"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Wellness Wisdom",
+      "description": "Cultivate physical, mental, and emotional well-being with these holistic questions",
+      "color": "bg-green-500",
+      "icon": "FireIcon",
+      "cards": [
+        {
+          "id": 77,
+          "text": "What's the most effective self-care practice you've adopted for managing stress?"
+        },
+        {
+          "id": 78,
+          "text": "If you could create a new wellness program or retreat, what would it focus on and how would it benefit participants?"
+        },
+        {
+          "id": 79,
+          "text": "What's the biggest misconception people have about mental health, and how can we work to change that?"
+        },
+        {
+          "id": 80,
+          "text": "If you could design a new fitness or exercise program, what would it be and how would it promote overall well-being?"
+        },
+        {
+          "id": 81,
+          "text": "What's the most important thing you think we can do to prioritize sleep and rest in our busy lives?"
+        },
+        {
+          "id": 82,
+          "text": "If you could create a new healthy habit or ritual, what would it be and how would you incorporate it into your daily routine?"
+        },
+        {
+          "id": 83,
+          "text": "What's the most significant way you've seen nutrition or diet impact overall health, and how can we make healthier choices?"
+        },
+        {
+          "id": 84,
+          "text": "If you could develop a new mindfulness or meditation practice, what would it be and how would it benefit practitioners?"
+        },
+        {
+          "id": 85,
+          "text": "What's the biggest challenge you think we face in maintaining work-life balance, and how can we overcome it?"
+        },
+        {
+          "id": 86,
+          "text": "If you could create a new community or support system for people struggling with their mental health, what would it be and how would it?"
+        },
+        {
+          "id": 87,
+          "text": "What's the most important thing you think we can do to prioritize self-compassion and self-forgiveness?"
+        },
+        {
+          "id": 88,
+          "text": "If you could create a new wellness app or tool, what would it be and how would it support users' well-being?"
+        },
+        {
+          "id": 89,
+          "text": "What's the biggest way you've seen technology impact our mental and physical health, and how can we mitigate its effects?"
+        },
+        {
+          "id": 90,
+          "text": "If you could design a new healthcare system, what would be its core principles and goals?"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Relationship Revival",
+      "description": "Nurture and deepen your connections with others using these relationship-focused questions",
+      "color": "bg-red-500",
+      "icon": "HeartIcon",
+      "cards": [
+        {
+          "id": 91,
+          "text": "What's the most meaningful way you've ever connected with someone, and what made it so special?"
+        },
+        {
+          "id": 92,
+          "text": "If you could create a new tradition or ritual to strengthen relationships, what would it be and how would it work?"
+        },
+        {
+          "id": 93,
+          "text": "What's the biggest challenge you've faced in a relationship, and how did you overcome it?"
+        },
+        {
+          "id": 94,
+          "text": "If you could have dinner with any fictional character, who would it be and why?"
+        },
+        {
+          "id": 95,
+          "text": "What's the most important thing you think we can do to prioritize empathy and understanding in our relationships?"
+        },
+        {
+          "id": 96,
+          "text": "If you could create a new language or way of communicating, what would it be and how would it improve relationships?"
+        },
+        {
+          "id": 97,
+          "text": "What's the biggest misconception people have about love or relationships, and how can we work to change that?"
+        },
+        {
+          "id": 98,
+          "text": "If you could go back in time and give advice to your past self about relationships, what would it be?"
+        },
+        {
+          "id": 99,
+          "text": "What's the most significant way you've seen vulnerability or openness impact a relationship, and how can we cultivate more of it?"
+        },
+        {
+          "id": 100,
+          "text": "If you could create a new community or support system for people navigating relationships, what would it be and how would it work?"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Playful Provocations",
+      "description": "Spark creativity and imagination with these playful and thought-provoking questions",
+      "color": "bg-fuchsia-500",
+      "icon": "HandThumbUpIcon",
+      "cards": [
+        {
+          "id": 101,
+          "text": "If you could turn any activity into a game, what would it be and how would you play it?"
+        },
+        {
+          "id": 102,
+          "text": "What's the craziest thing you've ever done on a whim, and would you do it again?"
+        },
+        {
+          "id": 103,
+          "text": "If you could create a new form of art or entertainment, what would it be and how would it engage audiences?"
+        },
+        {
+          "id": 104,
+          "text": "What's the most creative solution you've ever come up with to solve a problem?"
+        },
+        {
+          "id": 105,
+          "text": "If you could have any superpower for one hour, what would it be and how would you use it?"
+        },
+        {
+          "id": 106,
+          "text": "What's the biggest risk you've ever taken, and was it worth it?"
+        },
+        {
+          "id": 107,
+          "text": "If you could create a new theme park or playground, what would it be and what attractions would it feature?"
+        },
+        {
+          "id": 108,
+          "text": "What's the most spontaneous thing you've ever done, and would you do it again?"
+        },
+        {
+          "id": 109,
+          "text": "If you could turn any book or movie into a real-life experience, what would it be and how would you make it happen?"
+        },
+        {
+          "id": 110,
+          "text": "What's the most imaginative or creative thing you've ever made or built, and what inspired you to create it?"
+        }
+      ]
+    }
+  ]
+}
