@@ -1,18 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
-// import { AcademicCapIcon, ArrowPathIcon, BanknotesIcon, Battery50Icon, BeakerIcon, BoltSlashIcon, BriefcaseIcon, CakeIcon, CalendarDaysIcon, DevicePhoneMobileIcon, FaceSmileIcon, FingerPrintIcon } from "@heroicons/react/24/outline";
 import Deck from "./ui/deck/deck";
 import TopBar from "./ui/topbar/topbar";
 import Link from "next/link";
 import { Deck as DeckType } from '@/app/app/lib/definitions'
 import { ScrollArea } from './ui/scrollarea';
-
-// const icons = [
-//   AcademicCapIcon, ArrowPathIcon, BanknotesIcon, Battery50Icon, BeakerIcon, BoltSlashIcon, 
-//   BriefcaseIcon, CakeIcon, CalendarDaysIcon, DevicePhoneMobileIcon, FaceSmileIcon, FingerPrintIcon
-// ];
-
 import {
   FaceSmileIcon,
   HandRaisedIcon,
@@ -74,9 +67,6 @@ export default function App() {
     setHeight(remainingHeight);
   }, []);
 
-
-  // Shuffle the icons and colors arrays
-  // const shuffledIcons = [...icons].sort(() => Math.random() - 0.5);
   const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
 
   return (
@@ -87,7 +77,6 @@ export default function App() {
       <div className="grid grid-cols-2 gap-4 p-4 h-auto w-full">
         {decks.map((deck, index) => {
           const Icon = icons[deck.icon]
-          // const color = shuffledColors[index % shuffledColors.length];
           return (
             <Link key={deck.id} href={`/app/deck/${deck.id}`}>
               <Deck name={deck.name} className={deck.color}>

@@ -1,20 +1,51 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import DeckTable from "../ui/components/deck/table";
+import { fetchAllDecks, fetchFilteredDecks } from "../lib/actions";
+import DeckGrid from "../ui/components/deck/grid";
+import { Suspense } from "react";
+import { Tabs, TabsTrigger, TabsContent, TabsList } from "../ui/components/deck/tabs";
+import Search from "../ui/components/search";
 
-export default function decksPage() {
+export default async function DecksPage({
+    searchParams,
+  }: {
+    searchParams?: {
+      query?: string;
+    };
+  }) {
+    const query = searchParams?.query || '';
+
+      const decks = await fetchFilteredDecks(query);
     return (
-        <div className="flex flex-col p-4 m-8 rounded-xl border">
-            <h2 className="text-2xl font-semibold">Decks</h2>
-            <div className="flex flex-col gap-2 md:flex-row justify-between my-5">
-                <div className="flex flex-row border rounded-full w-full md:w-1/3 py-1 px-3 text-sm text-gray-500 gap-1 items-center">
-                <MagnifyingGlassIcon className="w-4 h-4"/>
-                    Search Decks
+        <Tabs defaultValue="grid" className="w-full">
+            <div className="flex flex-col p-0 sm:p-4 m-8 rounded-none sm:rounded-xl sm:border">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 justify-between">
+                    <h2 className="text-2xl font-semibold">Decks</h2>
+                    <div className="w-full sm:w-[300px]">
+                        <TabsList className="grid w-full grid-cols-2">
+                            <TabsTrigger value="grid">Grid</TabsTrigger>
+                            <TabsTrigger value="table">Table</TabsTrigger>
+                        </TabsList>
+                    </div>
                 </div>
-                <div className="text-white rounded-full bg-emerald-700 flex justify-center items-center p-2 px-4 text-sm">
-                    Create Deck
+                <div className="flex flex-col gap-2 md:flex-row justify-between my-5">
+                    <Search placeholder="Search Decks & Cards..." />
+                    <div className="text-white rounded-full bg-emerald-700 flex justify-center items-center p-2 px-4 text-sm">
+                        Create Deck
+                    </div>
                 </div>
+                <TabsContent value="grid">
+                    <Suspense>
+                        <DeckGrid decks={decks}/>
+                    </Suspense>
+                </TabsContent>
+                <TabsContent value="table">
+                    <Suspense>
+                        <DeckTable />
+                    </Suspense>
+                </TabsContent>
+                
             </div>
-            <DeckTable />
-        </div>
+        </Tabs>
     )
 }

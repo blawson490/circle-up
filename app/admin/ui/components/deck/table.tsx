@@ -5,8 +5,9 @@ import clsx from "clsx";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CheckCircleIcon, ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, PencilIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../Dialog";
+import { fetchAllDecks } from "@/app/admin/lib/actions";
 
-export default function DeckTable() {
+export default async function DeckTable() {
     const [decks, setDecks] = useState<Deck[]>([]);
     const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
     const [deckListHeight, setDeckListHeight] = useState(0);
@@ -22,7 +23,10 @@ export default function DeckTable() {
       const data = await response.json();
       setDecks(data);
     };
-  
+
+    
+    // const decks = await fetchAllDecks();
+
     const handleRowClick = (deck: Deck) => {
         setSelectedDeck(selectedDeck?.id === deck.id ? null : deck);
     };
