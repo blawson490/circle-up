@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Plus, Trash2, Book, Coffee, Users, Brain, Heart, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/app/ui/components/card';
 import { Button } from '@/app/app/ui/components/button'; 
-import { Input } from '@/app/admin/ui/components/input';
+import { Input } from '@/app/ui/input';
 
 const iconComponents = {
     Book, Coffee, Users, Brain, Heart, Star

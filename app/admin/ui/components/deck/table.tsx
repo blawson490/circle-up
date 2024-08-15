@@ -4,7 +4,7 @@ import { ScrollArea } from "@/app/app/ui/scrollarea";
 import clsx from "clsx";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CheckCircleIcon, ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, PencilIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../Dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../ui/Dialog";
 import { fetchAllDecks } from "@/app/admin/lib/actions";
 
 export default async function DeckTable() {

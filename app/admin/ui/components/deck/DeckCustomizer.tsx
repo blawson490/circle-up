@@ -5,7 +5,7 @@ import { Deck } from "@/app/app/lib/definitions";
 import { Button } from '@/app/app/ui/components/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 import { ScrollArea } from '@/app/app/ui/scrollarea';
-import { Input } from '../input';
+import { Input } from '../../../../ui/input';
 import { colors } from '@/app/lib/definitions';
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;

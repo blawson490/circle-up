@@ -8,12 +8,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../Dialog";
+} from "../../../../ui/Dialog";
 import { Button } from "@/app/app/ui/components/button";
 import { ScrollArea } from "@/app/app/ui/scrollarea";
 import { Popover, PopoverContent, PopoverTrigger } from '../popover';
-import { Input } from '../input';
-import { Textarea } from '../textArea';
+import { Input } from '../../../../ui/input';
+import { Textarea } from '../../../../ui/textArea';
 
 import {
     FaceSmileIcon,

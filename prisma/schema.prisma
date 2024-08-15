@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../database/db.sqlite3"
+}
+
+// Models
+model Category {
+  id          Int          @id @default(autoincrement())
+  name        String
+  collections Collection[] @relation("CategoryToCollection")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Collection {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  color       String?
+  icon        String?
+  categoryId  Int
+  category    Category @relation("CategoryToCollection", fields: [categoryId], references: [id], onDelete: Cascade)
+  decks       Deck[]   @relation("CollectionToDeck")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Deck {
+  id           Int        @id @default(autoincrement())
+  title        String
+  description  String?
+  date         DateTime?
+  collectionId Int
+  collection   Collection @relation("CollectionToDeck", fields: [collectionId], references: [id], onDelete: Cascade)
+  cards        Card[]     @relation("DeckToCard")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Card {
+  id        Int      @id @default(autoincrement())
+  text      String
+  deckId    Int
+  deck      Deck     @relation("DeckToCard", fields: [deckId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

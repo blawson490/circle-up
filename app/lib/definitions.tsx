@@ -40,3 +40,45 @@ export const colors = [
     // Rose
     'bg-rose-50', 'bg-rose-100', 'bg-rose-200', 'bg-rose-300', 'bg-rose-400', 'bg-rose-500', 'bg-rose-600', 'bg-rose-700', 'bg-rose-800', 'bg-rose-900',
   ];
+
+  export interface Category {
+    id: number;
+    name: string;
+    collections: Collection[];
+    createdAt: Date;
+    updatedAt: Date;
+  }
+  
+  export interface Collection {
+    id: number;
+    title: string;
+    description?: string;
+    color: string;
+    icon: string;
+    categoryId: number;
+    category: Category;
+    decks: Deck[];
+    createdAt: Date;
+    updatedAt: Date;
+  }
+  
+  export interface Deck {
+    id: number;
+    title: string;
+    description?: string;
+    date?: Date;
+    collectionId: number;
+    collection: Collection;
+    cards: Card[];
+    createdAt: Date;
+    updatedAt: Date;
+  }
+  
+  export interface Card {
+    id: number;
+    text: string;
+    deckId: number;
+    deck: Deck;
+    createdAt: Date;
+    updatedAt: Date;
+  }

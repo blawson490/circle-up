@@ -1,6 +1,6 @@
 import { fetchAllDecks } from "@/app/admin/lib/actions";
-import { Card, Deck } from "@/app/app/lib/definitions";
-import DeckTile from "./DeckTile";
+import { Card, Deck } from "@/app/lib/definitions";
+import DeckTile from "../../../../ui/admin/DeckTile";
 
 import {
   FaceSmileIcon,
@@ -31,11 +31,11 @@ HeartIcon: HeartIcon,
 HandThumbUpIcon: HandThumbUpIcon
 };
 
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../Dialog";
-import { Button } from "@/app/app/ui/components/button";
-import { ScrollArea } from "@/app/app/ui/scrollarea";
-import { Input } from "../input";
-import { Textarea } from "../textArea";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../ui/Dialog";
+import { Button } from "@/app/ui/button";
+// import { ScrollArea } from "@/app/app/ui/scrollarea";
+import { Input } from "../../../../ui/input";
+import { Textarea } from "../../../../ui/textArea";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import CardItem from "./CardItem";
 import DeckEditDialog from "./DeckEditDialog";

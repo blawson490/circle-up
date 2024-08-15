@@ -1,7 +1,7 @@
 "use client"
 import { Card } from "@/app/app/lib/definitions";
 import { useState } from "react";
-import { Input } from "../input";
+import { Input } from "../../../../ui/input";
 import { Button } from "@/app/app/ui/components/button";
 import { PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
