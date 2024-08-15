@@ -66,22 +66,22 @@ export default async function DeckGrid({ decks }: { decks: Deck[]}) {
                     <Icon className="size-14 sm:size-20" />
                   </DeckTile>
                 </DialogTrigger>
-                <DialogContent className="w-full">
+                {/* <DialogContent className="min-w-full">
                   <DialogHeader>
                     <DialogTitle>Edit Deck</DialogTitle>
                     <DialogDescription>
                       Make changes to the deck here. Click save when you're done.
                     </DialogDescription>
-                  </DialogHeader>
+                  </DialogHeader> */}
 
                   {/* Deck Content */}
                   <DeckEditDialog deck={deck}/>
 
-                  <DialogFooter className="flex flex-col md:flex-row gap-2 md:gap-1">
+                  {/* <DialogFooter className="flex flex-col md:flex-row gap-2 md:gap-1">
                     <Button variant="secondary">Cancel</Button>
                     <Button variant="default">Save</Button>
                   </DialogFooter>
-                </DialogContent>
+                </DialogContent> */}
               </Dialog>
             )})}
         </div>

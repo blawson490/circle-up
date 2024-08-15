@@ -15,17 +15,17 @@ export default async function DecksPage({
   }) {
     const query = searchParams?.query || '';
 
-      const decks = await fetchFilteredDecks(query);
+    const decks = await fetchFilteredDecks(query);
     return (
-        <Tabs defaultValue="grid" className="w-full">
+        // <Tabs defaultValue="grid" className="w-full">
             <div className="flex flex-col p-0 sm:p-4 m-8 rounded-none sm:rounded-xl sm:border">
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-1 justify-between">
                     <h2 className="text-2xl font-semibold">Decks</h2>
                     <div className="w-full sm:w-[300px]">
-                        <TabsList className="grid w-full grid-cols-2">
+                        {/* <TabsList className="grid w-full grid-cols-2">
                             <TabsTrigger value="grid">Grid</TabsTrigger>
                             <TabsTrigger value="table">Table</TabsTrigger>
-                        </TabsList>
+                        </TabsList> */}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 md:flex-row justify-between my-5">
@@ -34,18 +34,17 @@ export default async function DecksPage({
                         Create Deck
                     </div>
                 </div>
-                <TabsContent value="grid">
+                {/* <TabsContent value="grid"> */}
                     <Suspense>
                         <DeckGrid decks={decks}/>
                     </Suspense>
-                </TabsContent>
-                <TabsContent value="table">
+                {/* </TabsContent> */}
+                {/* <TabsContent value="table">
                     <Suspense>
                         <DeckTable />
                     </Suspense>
-                </TabsContent>
-                
+                </TabsContent> */}
             </div>
-        </Tabs>
+        // </Tabs>
     )
 }

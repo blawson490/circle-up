@@ -15,7 +15,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '../popover';
 import { Input } from '../input';
 import { Textarea } from '../textArea';
 
-
 import {
     FaceSmileIcon,
     HandRaisedIcon,
@@ -31,6 +30,7 @@ import {
     PlusIcon,
     PencilIcon
   } from "@heroicons/react/24/outline";
+import DeckCustomizerPopover from './DeckCustomizer';
 
   const icons = {
     FaceSmileIcon: FaceSmileIcon,
@@ -94,7 +94,7 @@ export default function DeckEditDialog({ deck: initialDeck }: { deck: Deck; }) {
   const Icon = icons[deck.icon as keyof typeof icons];
 
   return (
-    <DialogContent className="w-full max-w-3xl">
+    <DialogContent className="w-full max-w-3xl h-full sm:h-5/6 sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl">
       <DialogHeader>
         <DialogTitle>Edit Deck</DialogTitle>
         <DialogDescription>
@@ -103,7 +103,7 @@ export default function DeckEditDialog({ deck: initialDeck }: { deck: Deck; }) {
       </DialogHeader>
       <div className="flex flex-col w-full space-y-4">
         <div className="flex items-center space-x-4">
-          <Popover>
+          {/* <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline" className={`p-2 ${deck.color}`}>
                 <Icon className="h-8 w-8 text-white" />
@@ -133,7 +133,12 @@ export default function DeckEditDialog({ deck: initialDeck }: { deck: Deck; }) {
                 ))}
               </div>
             </PopoverContent>
-          </Popover>
+          </Popover> */}
+          <DeckCustomizerPopover
+            deck={deck}
+            updateDeck={updateDeck}
+            icons={icons}
+          />
           <Input
             value={deck.name}
             placeholder="Deck Name"
