@@ -51,15 +51,16 @@ export default async function DeckEditPage({ params }: DeckPageProps) {
     }
 
     // These need to be outside the try-catch block
-    revalidatePath(`/dashboard/edit/collection/${collectionId}`)
-    redirect(`/dashboard/edit/collection/${collectionId}`)
+    revalidatePath(`/admin/edit/collection/${collectionId}`)
+    revalidatePath(`/${collectionId}`)
+    redirect(`/admin/edit/collection/${collectionId}`)
   }
 
   async function handleCardsChange(deckId: number, newCards: Card[]) {
     'use server'
     try {
       const updatedDeck = await updateDeckCards(deckId, newCards)
-      revalidatePath(`/dashboard/edit/collection/${updatedDeck.collectionId}/deck/${deckId}`)
+      revalidatePath(`/admin/edit/collection/${updatedDeck.collectionId}/deck/${deckId}`)
       return { success: true, deck: updatedDeck }
     } catch (error) {
       console.error('Failed to update cards:', error)
@@ -73,7 +74,7 @@ export default async function DeckEditPage({ params }: DeckPageProps) {
         <TopBar 
           title={deck.title} 
           className={`bg-${deck.collection.color}-500 text-white`}
-          backLink={`/dashboard/edit/collection/${collectionId}`}
+          backLink={`/admin/edit/collection/${collectionId}`}
           rightSideComponent={
             <AlertDialog>
               <DropdownMenu>

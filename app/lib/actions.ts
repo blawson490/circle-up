@@ -42,14 +42,29 @@ export async function getDeckById(deckId: number) {
 }
 
 export async function createCategory(name: string) {
-  return await prisma.category.create({
-    data: { name },
-  })
+  let newCategory;
+
+  try {
+    newCategory = await prisma.category.create({
+      data: { name },
+    });
+  } catch (error) {
+    console.error('Failed to create category:', error);
+    return { success: false, error: 'Failed to create category' };
+  }
+
+  // Revalidate path outside of try-catch
+  revalidatePath('/admin');
+  revalidatePath('/')
+
+  return { success: true, data: newCategory };
 }
 
 export async function createCollection(data: any) {
+  let newCollection;
+
   try {
-    const newCollection = await prisma.collection.create({
+    newCollection = await prisma.collection.create({
       data: {
         title: data.title,
         description: data.description,
@@ -60,11 +75,14 @@ export async function createCollection(data: any) {
         }
       }
     });
-    return { success: true, data: newCollection };
   } catch (error) {
     console.error('Failed to create collection:', error);
     return { success: false, error: 'Failed to create collection' };
   }
+
+  revalidatePath('/admin');
+  revalidatePath('/');
+  return { success: true, data: newCollection };
 }
 
 // Admin Actions

@@ -30,7 +30,8 @@ export default async function Home() {
       console.error('Failed to delete category:', error)
       throw new Error('Failed to delete category')
     }
-    revalidatePath(`/dashboard`)
+    revalidatePath(`/admin`)
+    revalidatePath(`/`)
   }
 
   return (
@@ -50,7 +51,7 @@ export default async function Home() {
                     const IconComponent = getIconComponent(collection.icon)
                     const bgColor = getTailwindColor(collection.color)
                     return (
-                      <Link key={collection.id} href={`dashboard/edit/collection/${collection.id}`}>
+                      <Link key={collection.id} href={`admin/edit/collection/${collection.id}`}>
                         <DeckTile name={collection.title} className={`bg-${bgColor}-500`}>
                           <IconComponent className="size-20"/>
                         </DeckTile>

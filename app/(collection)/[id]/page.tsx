@@ -20,7 +20,7 @@ interface CollectionPageProps {
     <div className="w-full flex h-screen flex-col m-0 px-0 py-0 ">
       <div className='flex-1 flex flex-col overflow-hidden'>
         <TopBar title={collection.title} className={`bg-${getTailwindColor(collection.color)}-500 text-white`} backLink='/' />
-        <main className="space-y-8 flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-4 py-4 pb-24">
+        <main className="flex flex-col space-y-4 flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-4 py-4">
         {collection.decks.length > 0 ? collection?.decks.map((deck) => (
           <Link key={deck.id} href={`/${collection.id}/${deck.id}`}>
             <DeckCard

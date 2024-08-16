@@ -47,8 +47,9 @@ interface CollectionPageProps {
       }
   
       // These need to be outside the try-catch block
-      revalidatePath(`/dashboard`)
-      redirect(`/dashboard`)
+      revalidatePath(`/admin`)
+      revalidatePath(`/`)
+      redirect(`/admin`)
     }
 
   return (
@@ -57,7 +58,7 @@ interface CollectionPageProps {
         <TopBar 
           title={collection.title} 
           className={`bg-${getTailwindColor(collection.color)}-500 text-white`} 
-          backLink='/dashboard'
+          backLink='/admin'
           rightSideComponent={
             <AlertDialog>
               <DropdownMenu>
@@ -114,7 +115,7 @@ interface CollectionPageProps {
               </div>
               <div className='flex flex-col gap-4'>
             {collection?.decks.map((deck) => (
-              <Link key={deck.id} href={`/dashboard/edit/collection/${collection.id}/deck/${deck.id}`}>
+              <Link key={deck.id} href={`/admin/edit/collection/${collection.id}/deck/${deck.id}`}>
                   <DeckCard
                   deck={{
                     id: deck.id,
