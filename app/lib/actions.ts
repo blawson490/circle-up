@@ -47,16 +47,24 @@ export async function createCategory(name: string) {
   })
 }
 
-export async function createCollection(data: {
-  title: string
-  description: string
-  color: string
-  icon: string
-  categoryId: number
-}) {
-  return await prisma.collection.create({
-    data,
-  })
+export async function createCollection(data: any) {
+  try {
+    const newCollection = await prisma.collection.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        color: data.color,
+        icon: data.icon,
+        category: {
+          connect: { id: data.category.connect.id }
+        }
+      }
+    });
+    return { success: true, data: newCollection };
+  } catch (error) {
+    console.error('Failed to create collection:', error);
+    return { success: false, error: 'Failed to create collection' };
+  }
 }
 
 // Admin Actions
@@ -186,6 +194,7 @@ export async function getAdminDecks(collectionId: number): Promise<AdminDecksRes
     throw new Error(`Collection with ID ${collectionId} not found`);
   }
 
+  // @ts-ignore 
   const decks: Deck[] = collection.decks.map(prismaDeck => ({
     id: prismaDeck.id,
     title: prismaDeck.title,
@@ -289,5 +298,95 @@ export async function deleteAdminCard(cardId: number): Promise<void> {
   } catch (error) {
     console.error(`Error deleting card with ID ${cardId}:`, error);
     throw new Error(`Failed to delete card with ID ${cardId}`);
+  }
+}
+
+export async function addDeck(data: {
+  title: string
+  description?: string
+  date?: Date
+  collectionId: number
+  cards: { text: string }[]
+}) {
+  return await prisma.deck.create({
+    data: {
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      collectionId: data.collectionId,
+      cards: {
+        create: data.cards
+      }
+    },
+    include: {
+      cards: true
+    }
+  })
+}
+
+export async function updateDeckCards(deckId: number, newCards: Card[]) {
+  try {
+    const updatedDeck = await prisma.$transaction(async (prisma) => {
+      // Fetch current cards
+      const currentCards = await prisma.card.findMany({
+        where: { deckId: deckId },
+      });
+
+      // Prepare operations
+      const operations = [];
+
+      // Update existing cards and create new ones
+      for (const card of newCards) {
+        if (card.id && currentCards.find(c => c.id === card.id)) {
+          // Update existing card
+          operations.push(
+            prisma.card.update({
+              where: { id: card.id },
+              data: { text: card.text, updatedAt: new Date() },
+            })
+          );
+        } else {
+          // Create new card
+          operations.push(
+            prisma.card.create({
+              data: {
+                text: card.text,
+                deckId: deckId,
+              },
+            })
+          );
+        }
+      }
+
+      // Delete cards that are no longer present
+      const newCardIds = newCards.map(card => card.id).filter(Boolean);
+      const cardsToDelete = currentCards.filter(card => !newCardIds.includes(card.id));
+      
+      operations.push(
+        ...cardsToDelete.map(card => 
+          prisma.card.delete({
+            where: { id: card.id },
+          })
+        )
+      );
+
+      // Execute all operations
+      await Promise.all(operations);
+
+      // Fetch and return the updated deck
+      return await prisma.deck.findUnique({
+        where: { id: deckId },
+        include: { cards: true },
+      });
+    });
+
+    if (!updatedDeck) {
+      throw new Error('Deck not found after update');
+    }
+
+    return updatedDeck;
+  } catch (error) {
+    console.error('Failed to update deck cards:', error);
+    throw error;  // Re-throw the error so it can be handled by the caller
   }
 }

@@ -12,7 +12,7 @@ interface TopBarProps {
 export default function TopBar({ title, className, backLink, rightSideComponent }: TopBarProps) {
   return (
     <div
-      className={`flex flex-row h-14 w-full justify-between items-center p-4 shadow-md sticky top-0 z-10 overflow-hidden ${className}`}
+      className={`flex flex-row h-14 w-full justify-between items-center px-1 py-4 md:px-4 shadow-md sticky top-0 z-10 overflow-hidden ${className}`}
     >
       {backLink ? (
         <Link href={backLink}>

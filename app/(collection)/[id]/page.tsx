@@ -21,7 +21,7 @@ interface CollectionPageProps {
       <div className='flex-1 flex flex-col overflow-hidden'>
         <TopBar title={collection.title} className={`bg-${getTailwindColor(collection.color)}-500 text-white`} backLink='/' />
         <main className="space-y-8 flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-4 py-4 pb-24">
-        {collection?.decks.map((deck) => (
+        {collection.decks.length > 0 ? collection?.decks.map((deck) => (
           <Link key={deck.id} href={`/${collection.id}/${deck.id}`}>
             <DeckCard
             key={deck.id}
@@ -35,7 +35,7 @@ interface CollectionPageProps {
             collectionId={collection.id}
           />
           </Link>
-        ))}
+        )): (<div className='w-screen h-h-screen flex flex-row justify-center items-center'>No decks to display.</div>)}
         </main>
       </div>
     </div>
