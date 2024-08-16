@@ -17,6 +17,11 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import CardList from '@/app/ui/admin/cardList'
 import { Card } from '@/app/lib/definitions'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Admin'
+}
 
 interface DeckPageProps {
   params: { collectionId: string; deckId: string }

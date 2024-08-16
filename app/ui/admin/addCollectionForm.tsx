@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -12,9 +12,8 @@ import { Textarea } from '@/app/ui/textArea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/ui/select';
 import { createCollection } from '@/app/lib/actions';
 import { useRouter } from 'next/navigation';
-import { colorMap, getTailwindColor } from '@/utils/colorMap';
-import { iconMap, getIconComponent } from '@/utils/iconMap';
-import IconSelect from '../iconSelect';
+import { colorMap } from '@/utils/colorMap';
+import { iconMap } from '@/utils/iconMap';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100, 'Title must be 100 characters or less'),
@@ -39,6 +38,13 @@ const AddCollectionForm: React.FC<AddCollectionFormProps> = ({ categoryId }) => 
       icon: 'null',
     },
   });
+
+  useEffect(() => {
+    if (!isOpen) {
+      // Reset scroll position when dialog is closed
+      window.scrollTo(0, 0);
+    }
+  }, [isOpen]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -69,7 +75,7 @@ const AddCollectionForm: React.FC<AddCollectionFormProps> = ({ categoryId }) => 
           Add Collection
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[calc(100vh-4rem)] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Add New Collection</DialogTitle>
         </DialogHeader>

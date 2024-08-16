@@ -10,6 +10,11 @@ import { revalidatePath } from 'next/cache'
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from '@/app/ui/alertDialog';
 import { AlertTriangle, TrashIcon } from 'lucide-react';
 import { Button } from '@/app/ui/button';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Admin'
+}
 
 export default async function Home() {
   const categories = await getCategories()

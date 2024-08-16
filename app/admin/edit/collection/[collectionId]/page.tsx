@@ -22,6 +22,11 @@ import { DialogContent } from '@radix-ui/react-dialog'
 import AddDeckForm from '@/app/ui/admin/addDeckForm'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Admin'
+}
 
 interface CollectionPageProps {
     params: { collectionId: string }
