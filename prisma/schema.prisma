@@ -49,3 +49,25 @@ model Card {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Analytics
+
+model ProductionPageView {
+  id        Int      @id @default(autoincrement())
+  page      String
+  url       String
+  userAgent String
+  loadTime  Int
+  isSSR     Boolean
+  timestamp DateTime @default(now())
+}
+
+model DevelopmentPageView {
+  id        Int      @id @default(autoincrement())
+  page      String
+  url       String
+  userAgent String
+  loadTime  Int
+  isSSR     Boolean
+  timestamp DateTime @default(now())
+}

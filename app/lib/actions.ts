@@ -1,3 +1,4 @@
+// actions.ts
 'use server'
 
 import { PrismaClient } from '@prisma/client'
@@ -406,5 +407,45 @@ export async function updateDeckCards(deckId: number, newCards: Card[]) {
   } catch (error) {
     console.error('Failed to update deck cards:', error);
     throw error;  // Re-throw the error so it can be handled by the caller
+  }
+}
+
+// Analytics
+
+export async function logPageView(data: {
+  page: string;
+  url: string;
+  userAgent: string;
+  loadTime: number;
+  isSSR: boolean;
+}) {
+  'use server'
+  
+  const isProduction = process.env.NEXT_PUBLIC_APP_ENV === 'production'
+
+  try {
+    if (isProduction) {
+      await prisma.productionPageView.create({
+        data: {
+          page: data.page,
+          url: data.url,
+          userAgent: data.userAgent,
+          loadTime: data.loadTime,
+          isSSR: data.isSSR,
+        },
+      });
+    } else {
+      await prisma.developmentPageView.create({
+        data: {
+          page: data.page,
+          url: data.url,
+          userAgent: data.userAgent,
+          loadTime: data.loadTime,
+          isSSR: data.isSSR,
+        },
+      });
+    }
+  } catch (error) {
+    console.error('Failed to log page view:', error);
   }
 }

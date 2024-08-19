@@ -4,6 +4,7 @@ import TopBar from './ui/topBar'
 import Link from 'next/link'
 import { getCategories } from './lib/actions'
 import CollectionTile from './ui/collectionTile'
+import PageViewTracker from './ui/analytics/utils/PageViewTracker'
 
 
 export default async function Home() {
@@ -11,6 +12,7 @@ export default async function Home() {
 
   return (
     <div className="w-full flex h-screen flex-col m-0 px-0 py-0">
+      <PageViewTracker path={`/`} isSSR={true} />
       <div className='flex-1 flex flex-col overflow-hidden'>
         <TopBar title="CircleUp Decks" className='bg-white' />
         <main className="space-y-8 flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-4 py-4 pb-24">

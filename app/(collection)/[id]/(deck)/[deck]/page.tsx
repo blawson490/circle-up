@@ -3,6 +3,7 @@ import Carousel from "@/app/ui/carousel";
 import TopBar from "@/app/ui/topBar";
 import { getDeckById } from "@/app/lib/actions";
 import { notFound } from 'next/navigation';
+import PageViewTracker from "@/app/ui/analytics/utils/PageViewTracker";
 
 export default async function DeckPage({ params }: { params: { id: string, deck: string } }) {
   const deckId = parseInt(params.deck);
@@ -21,6 +22,7 @@ export default async function DeckPage({ params }: { params: { id: string, deck:
 
   return (
     <div className="h-screen relative flex flex-col bg-gray-100">
+      <PageViewTracker path={`/${deck.collectionId}/${deckId}`} isSSR={true} />
       <TopBar 
         title={deck.title} 
         className={`bg-${collection.color}-500 text-white`} 

@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "PageView" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "page" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "timestamp" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userAgent" TEXT NOT NULL,
+    "loadTime" INTEGER NOT NULL,
+    "isSSR" BOOLEAN NOT NULL
+);
