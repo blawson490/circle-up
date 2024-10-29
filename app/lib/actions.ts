@@ -1,16 +1,16 @@
 // actions.ts
-'use server'
+"use server";
 
-import { PrismaClient } from '@prisma/client'
-import { Category, Collection, Deck, Card } from '@/app/lib/definitions';
-import { revalidatePath } from 'next/cache';
+import { PrismaClient } from "@prisma/client";
+import { Category, Collection, Deck, Card } from "@/app/lib/definitions";
+import { revalidatePath } from "next/cache";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export async function getCategories() {
   return await prisma.category.findMany({
     include: { collections: true },
-  })
+  });
 }
 
 export async function getCollectionById(id: number) {
@@ -21,10 +21,10 @@ export async function getCollectionById(id: number) {
       decks: {
         include: {
           cards: true,
-        }
-      }
-    }
-  })
+        },
+      },
+    },
+  });
 }
 
 export async function getDeckById(deckId: number) {
@@ -35,10 +35,10 @@ export async function getDeckById(deckId: number) {
       collection: {
         select: {
           id: true,
-          color: true
-        }
-      }
-    }
+          color: true,
+        },
+      },
+    },
   });
 }
 
@@ -50,13 +50,13 @@ export async function createCategory(name: string) {
       data: { name },
     });
   } catch (error) {
-    console.error('Failed to create category:', error);
-    return { success: false, error: 'Failed to create category' };
+    console.error("Failed to create category:", error);
+    return { success: false, error: "Failed to create category" };
   }
 
   // Revalidate path outside of try-catch
-  revalidatePath('/admin');
-  revalidatePath('/')
+  revalidatePath("/admin");
+  revalidatePath("/");
 
   return { success: true, data: newCategory };
 }
@@ -72,17 +72,17 @@ export async function createCollection(data: any) {
         color: data.color,
         icon: data.icon,
         category: {
-          connect: { id: data.category.connect.id }
-        }
-      }
+          connect: { id: data.category.connect.id },
+        },
+      },
     });
   } catch (error) {
-    console.error('Failed to create collection:', error);
-    return { success: false, error: 'Failed to create collection' };
+    console.error("Failed to create collection:", error);
+    return { success: false, error: "Failed to create collection" };
   }
 
-  revalidatePath('/admin');
-  revalidatePath('/');
+  revalidatePath("/admin");
+  revalidatePath("/");
   return { success: true, data: newCollection };
 }
 
@@ -91,35 +91,37 @@ export async function createCollection(data: any) {
 // READ
 export async function getAdminCategories(): Promise<Category[]> {
   const prismaCategories = await prisma.category.findMany({
-    include: { 
-      collections: true
-    }
+    include: {
+      collections: true,
+    },
   });
 
-  const categories: Category[] = prismaCategories.map(prismaCategory => {
+  const categories: Category[] = prismaCategories.map((prismaCategory) => {
     const category: Category = {
       id: prismaCategory.id,
       name: prismaCategory.name,
       collections: [],
       createdAt: prismaCategory.createdAt,
-      updatedAt: prismaCategory.updatedAt
+      updatedAt: prismaCategory.updatedAt,
     };
 
-    category.collections = prismaCategory.collections.map(prismaCollection => {
-      const collection: Collection = {
-        id: prismaCollection.id,
-        title: prismaCollection.title,
-        description: prismaCollection.description ?? undefined,
-        color: prismaCollection.color ?? '',
-        icon: prismaCollection.icon ?? '',
-        categoryId: prismaCollection.categoryId,
-        category: category,  // Circular reference
-        decks: [],  // Empty array as requested
-        createdAt: prismaCollection.createdAt,
-        updatedAt: prismaCollection.updatedAt
-      };
-      return collection;
-    });
+    category.collections = prismaCategory.collections.map(
+      (prismaCollection) => {
+        const collection: Collection = {
+          id: prismaCollection.id,
+          title: prismaCollection.title,
+          description: prismaCollection.description ?? undefined,
+          color: prismaCollection.color ?? "",
+          icon: prismaCollection.icon ?? "",
+          categoryId: prismaCollection.categoryId,
+          category: category, // Circular reference
+          decks: [], // Empty array as requested
+          createdAt: prismaCollection.createdAt,
+          updatedAt: prismaCollection.updatedAt,
+        };
+        return collection;
+      }
+    );
 
     return category;
   });
@@ -132,63 +134,67 @@ interface AdminCollectionsResult {
   collections: Collection[];
 }
 
-export async function getAdminCollections(categoryId: number): Promise<AdminCollectionsResult> {
+export async function getAdminCollections(
+  categoryId: number
+): Promise<AdminCollectionsResult> {
   const category = await prisma.category.findUnique({
     where: { id: categoryId },
     include: {
       collections: {
         include: {
-          decks: true
-        }
-      }
-    }
+          decks: true,
+        },
+      },
+    },
   });
 
   if (!category) {
     throw new Error(`Category with ID ${categoryId} not found`);
   }
 
-  const collections: Collection[] = category.collections.map(prismaCollection => {
-    const collection: Collection = {
-      id: prismaCollection.id,
-      title: prismaCollection.title,
-      description: prismaCollection.description ?? undefined,
-      color: prismaCollection.color ?? '',
-      icon: prismaCollection.icon ?? '',
-      categoryId: prismaCollection.categoryId,
-      category: {
-        id: category.id,
-        name: category.name,
-        collections: [],  // We don't need to populate this to avoid circular references
-        createdAt: category.createdAt,
-        updatedAt: category.updatedAt
-      },
-      decks: prismaCollection.decks.map(prismaDeck => ({
-        id: prismaDeck.id,
-        title: prismaDeck.title,
-        description: prismaDeck.description ?? undefined,
-        date: prismaDeck.date ?? undefined,
-        collectionId: prismaDeck.collectionId,
-        collection: {} as Collection,  // We'll set this to an empty object to avoid circular references
-        cards: [],  // We're not fetching cards in this query
-        createdAt: prismaDeck.createdAt,
-        updatedAt: prismaDeck.updatedAt
-      })),
-      createdAt: prismaCollection.createdAt,
-      updatedAt: prismaCollection.updatedAt
-    };
+  const collections: Collection[] = category.collections.map(
+    (prismaCollection) => {
+      const collection: Collection = {
+        id: prismaCollection.id,
+        title: prismaCollection.title,
+        description: prismaCollection.description ?? undefined,
+        color: prismaCollection.color ?? "",
+        icon: prismaCollection.icon ?? "",
+        categoryId: prismaCollection.categoryId,
+        category: {
+          id: category.id,
+          name: category.name,
+          collections: [], // We don't need to populate this to avoid circular references
+          createdAt: category.createdAt,
+          updatedAt: category.updatedAt,
+        },
+        decks: prismaCollection.decks.map((prismaDeck) => ({
+          id: prismaDeck.id,
+          title: prismaDeck.title,
+          description: prismaDeck.description ?? undefined,
+          date: prismaDeck.date ?? undefined,
+          collectionId: prismaDeck.collectionId,
+          collection: {} as Collection, // We'll set this to an empty object to avoid circular references
+          cards: [], // We're not fetching cards in this query
+          createdAt: prismaDeck.createdAt,
+          updatedAt: prismaDeck.updatedAt,
+        })),
+        createdAt: prismaCollection.createdAt,
+        updatedAt: prismaCollection.updatedAt,
+      };
 
-    // Set the collection reference for each deck
-    collection.decks.forEach(deck => {
-      deck.collection = collection;
-    });
+      // Set the collection reference for each deck
+      collection.decks.forEach((deck) => {
+        deck.collection = collection;
+      });
 
-    return collection;
-  });
+      return collection;
+    }
+  );
 
   return {
     categoryName: category.name,
-    collections: collections
+    collections: collections,
   };
 }
 
@@ -197,24 +203,26 @@ interface AdminDecksResult {
   decks: Deck[];
 }
 
-export async function getAdminDecks(collectionId: number): Promise<AdminDecksResult> {
+export async function getAdminDecks(
+  collectionId: number
+): Promise<AdminDecksResult> {
   const collection = await prisma.collection.findUnique({
     where: { id: collectionId },
     include: {
       decks: {
         include: {
-          cards: true
-        }
-      }
-    }
+          cards: true,
+        },
+      },
+    },
   });
 
   if (!collection) {
     throw new Error(`Collection with ID ${collectionId} not found`);
   }
 
-  // @ts-ignore 
-  const decks: Deck[] = collection.decks.map(prismaDeck => ({
+  // @ts-ignore
+  const decks: Deck[] = collection.decks.map((prismaDeck) => ({
     id: prismaDeck.id,
     title: prismaDeck.title,
     description: prismaDeck.description ?? undefined,
@@ -225,28 +233,28 @@ export async function getAdminDecks(collectionId: number): Promise<AdminDecksRes
       title: collection.title,
       // We don't need to populate other fields to avoid circular references
     },
-    cards: prismaDeck.cards.map(prismaCard => ({
+    cards: prismaDeck.cards.map((prismaCard) => ({
       id: prismaCard.id,
       text: prismaCard.text,
       deckId: prismaCard.deckId,
-      deck: {} as Deck,  // We'll set this to an empty object to avoid circular references
+      deck: {} as Deck, // We'll set this to an empty object to avoid circular references
       createdAt: prismaCard.createdAt,
-      updatedAt: prismaCard.updatedAt
+      updatedAt: prismaCard.updatedAt,
     })),
     createdAt: prismaDeck.createdAt,
-    updatedAt: prismaDeck.updatedAt
+    updatedAt: prismaDeck.updatedAt,
   }));
 
   // Set the deck reference for each card
-  decks.forEach(deck => {
-    deck.cards.forEach(card => {
+  decks.forEach((deck) => {
+    deck.cards.forEach((card) => {
       card.deck = deck;
     });
   });
 
   return {
     collectionName: collection.title,
-    decks: decks
+    decks: decks,
   };
 }
 
@@ -261,12 +269,12 @@ export async function deleteAdminCategory(categoryId: number): Promise<void> {
           include: {
             decks: {
               include: {
-                cards: true
-              }
-            }
-          }
-        }
-      }
+                cards: true,
+              },
+            },
+          },
+        },
+      },
     });
     revalidatePath("/manage");
   } catch (error) {
@@ -275,7 +283,9 @@ export async function deleteAdminCategory(categoryId: number): Promise<void> {
   }
 }
 
-export async function deleteAdminCollection(collectionId: number): Promise<void> {
+export async function deleteAdminCollection(
+  collectionId: number
+): Promise<void> {
   try {
     // Delete the collection and all related decks and cards
     await prisma.collection.delete({
@@ -283,10 +293,10 @@ export async function deleteAdminCollection(collectionId: number): Promise<void>
       include: {
         decks: {
           include: {
-            cards: true
-          }
-        }
-      }
+            cards: true,
+          },
+        },
+      },
     });
   } catch (error) {
     console.error(`Error deleting collection with ID ${collectionId}:`, error);
@@ -300,8 +310,8 @@ export async function deleteAdminDeck(deckId: number): Promise<void> {
     await prisma.deck.delete({
       where: { id: deckId },
       include: {
-        cards: true
-      }
+        cards: true,
+      },
     });
   } catch (error) {
     console.error(`Error deleting deck with ID ${deckId}:`, error);
@@ -309,10 +319,63 @@ export async function deleteAdminDeck(deckId: number): Promise<void> {
   }
 }
 
+export async function updateDeckTitle(
+  deckId: number,
+  title: string
+): Promise<void> {
+  try {
+    // Update the deck title
+    await prisma.deck.update({
+      where: { id: deckId },
+      data: { title },
+    });
+  } catch (error) {
+    console.error(`Error updating deck title with ID ${deckId}:`, error);
+    throw new Error(`Failed to update deck title with ID ${deckId}`);
+  }
+}
+
+export async function updateDeckDate(
+  deckId: number,
+  date: string | null
+): Promise<void> {
+  try {
+    // Update the deck date
+    await prisma.deck.update({
+      where: { id: deckId },
+      data: { date },
+    });
+  } catch (error) {
+    console.error(`Error updating deck date with ID ${deckId}:`, error);
+    throw new Error(`Failed to update deck date with ID ${deckId}`);
+  }
+}
+
+export async function updateCollectionTitle(
+  collectionId: number,
+  title: string
+): Promise<void> {
+  try {
+    // Update the collection title
+    await prisma.collection.update({
+      where: { id: collectionId },
+      data: { title },
+    });
+  } catch (error) {
+    console.error(
+      `Error updating collection title with ID ${collectionId}:`,
+      error
+    );
+    throw new Error(
+      `Failed to update collection title with ID ${collectionId}`
+    );
+  }
+}
+
 export async function deleteAdminCard(cardId: number): Promise<void> {
   try {
     await prisma.card.delete({
-      where: { id: cardId }
+      where: { id: cardId },
     });
   } catch (error) {
     console.error(`Error deleting card with ID ${cardId}:`, error);
@@ -321,11 +384,11 @@ export async function deleteAdminCard(cardId: number): Promise<void> {
 }
 
 export async function addDeck(data: {
-  title: string
-  description?: string
-  date?: Date
-  collectionId: number
-  cards: { text: string }[]
+  title: string;
+  description?: string;
+  date?: Date;
+  collectionId: number;
+  cards: { text: string }[];
 }) {
   return await prisma.deck.create({
     data: {
@@ -334,13 +397,13 @@ export async function addDeck(data: {
       date: data.date,
       collectionId: data.collectionId,
       cards: {
-        create: data.cards
-      }
+        create: data.cards,
+      },
     },
     include: {
-      cards: true
-    }
-  })
+      cards: true,
+    },
+  });
 }
 
 export async function updateDeckCards(deckId: number, newCards: Card[]) {
@@ -356,7 +419,7 @@ export async function updateDeckCards(deckId: number, newCards: Card[]) {
 
       // Update existing cards and create new ones
       for (const card of newCards) {
-        if (card.id && currentCards.find(c => c.id === card.id)) {
+        if (card.id && currentCards.find((c) => c.id === card.id)) {
           // Update existing card
           operations.push(
             prisma.card.update({
@@ -378,11 +441,13 @@ export async function updateDeckCards(deckId: number, newCards: Card[]) {
       }
 
       // Delete cards that are no longer present
-      const newCardIds = newCards.map(card => card.id).filter(Boolean);
-      const cardsToDelete = currentCards.filter(card => !newCardIds.includes(card.id));
-      
+      const newCardIds = newCards.map((card) => card.id).filter(Boolean);
+      const cardsToDelete = currentCards.filter(
+        (card) => !newCardIds.includes(card.id)
+      );
+
       operations.push(
-        ...cardsToDelete.map(card => 
+        ...cardsToDelete.map((card) =>
           prisma.card.delete({
             where: { id: card.id },
           })
@@ -400,13 +465,13 @@ export async function updateDeckCards(deckId: number, newCards: Card[]) {
     });
 
     if (!updatedDeck) {
-      throw new Error('Deck not found after update');
+      throw new Error("Deck not found after update");
     }
 
     return updatedDeck;
   } catch (error) {
-    console.error('Failed to update deck cards:', error);
-    throw error;  // Re-throw the error so it can be handled by the caller
+    console.error("Failed to update deck cards:", error);
+    throw error; // Re-throw the error so it can be handled by the caller
   }
 }
 
@@ -419,9 +484,9 @@ export async function logPageView(data: {
   loadTime: number;
   isSSR: boolean;
 }) {
-  'use server'
-  
-  const isProduction = process.env.NEXT_PUBLIC_APP_ENV === 'production'
+  "use server";
+
+  const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
   try {
     if (isProduction) {
@@ -446,6 +511,6 @@ export async function logPageView(data: {
       });
     }
   } catch (error) {
-    console.error('Failed to log page view:', error);
+    console.error("Failed to log page view:", error);
   }
 }

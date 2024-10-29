@@ -23,6 +23,7 @@ import AddDeckForm from '@/app/ui/admin/addDeckForm'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
+import EditableTitle from '@/app/ui/admin/editableText'
 
 export const metadata: Metadata = {
   title: 'Admin'
@@ -55,6 +56,11 @@ interface CollectionPageProps {
       revalidatePath(`/admin`)
       revalidatePath(`/`)
       redirect(`/admin`)
+    }
+
+    async function updateTitle(newText: string) {
+      'use server'
+      console.log(newText)
     }
 
   return (
@@ -98,7 +104,8 @@ interface CollectionPageProps {
             <div className='flex flex-col justify-start w-full py-6'>
             {IconComponent && 
               <IconComponent className={`text-${collection.color}-500 size-24 aspect-square p-2 rounded-lg`} />}
-              <p className='text-4xl font-bold pt-2 p-2 rounded-lg  '>{collection.title}</p>
+              {/* <p className='text-4xl font-bold pt-2 p-2 rounded-lg  '>{collection.title}</p> */}
+              <EditableTitle text={collection.title} updateText={updateTitle}/>
               <p className='text-md pt-2 p-2 rounded-lg '>{collection.description}</p>
               <div className='grid grid-rows-2 p-2'>
                 <p className='text-sm text-gray-500 cursor-default'>Category</p>
